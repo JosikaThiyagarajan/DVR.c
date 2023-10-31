@@ -1,0 +1,48 @@
+#include<stdio.h>
+int main()
+{
+    int i,j,k,TN,N[10][10];
+    printf("Enter the total number of nodes :");
+    scanf("%d",&TN);
+
+   printf("Enter the transitions \n");
+   for(i=0;i<TN;i++)
+   {
+       for(j=0;j<TN;j++)
+ 	{
+           printf("Enter %d to %d cost:",i+1,j+1);
+           scanf("%d",&N[i][j]);
+	}
+       printf("\n");
+   }
+
+
+   for(i=0;i<TN;i++)
+   {
+      printf("INITIAL ROUTING TABLE FOR %d:\n",i);
+      for(j=0;j<TN;j++)
+	{
+         printf("Distance to %d is %d\n",j,N[i][j]);
+      }
+      printf("\n");
+   }
+
+   for(i=0;i<TN;i++)
+       for(j=0;j<TN;j++)
+           for(k=0;k<TN;k++)
+           {
+                if(N[i][j]>N[i][k]+N[k][j])
+                   N[i][j]=N[i][k]+N[k][j];
+           }
+
+   printf("Modified Routing Table \n");
+   for(i=0;i<TN;i++)
+   {
+       for(j=0;j<TN;j++)
+       {
+           printf("%d",N[i][j]);
+           printf("\t");
+       }
+          printf("\n");
+   }
+}
